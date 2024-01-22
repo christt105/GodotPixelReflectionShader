@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bctvxjqapn567"]
+
+[ext_resource type="Texture2D" uid="uid://dc5g8kp2hkj0o" path="res://icon.svg" id="1_jq3cf"]
+[ext_resource type="Shader" path="res://pixel_water_reflection.gdshader" id="2_nm01o"]
+[ext_resource type="Texture2D" uid="uid://l17imgxvlre0" path="res://CharacterTest.png" id="3_sgomt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67l8d"]
+shader = ExtResource("2_nm01o")
+shader_parameter/hFrames = 1
+shader_parameter/vFrames = 1
+shader_parameter/enableMovement = true
+shader_parameter/displacementPixels = 1
+shader_parameter/timeGap = 0.4
+shader_parameter/speed = 1.25
+shader_parameter/leftSideRelationTime = 0.3
+shader_parameter/rightSideRelationTime = 0.3
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/colorMix = 0.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ox6tp"]
+shader = ExtResource("2_nm01o")
+shader_parameter/hFrames = 4
+shader_parameter/vFrames = 4
+shader_parameter/enableMovement = true
+shader_parameter/displacementPixels = 2
+shader_parameter/timeGap = 0.4
+shader_parameter/speed = 2.0
+shader_parameter/leftSideRelationTime = 0.3
+shader_parameter/rightSideRelationTime = 0.3
+shader_parameter/color = Color(0, 0.368627, 1, 1)
+shader_parameter/colorMix = 0.31
+shader_parameter/alpha = 0.75
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(211, 130)
+texture = ExtResource("1_jq3cf")
+
+[node name="Reflection" type="Sprite2D" parent="Player"]
+material = SubResource("ShaderMaterial_67l8d")
+texture = ExtResource("1_jq3cf")
+offset = Vector2(0, 128)
+flip_v = true
+
+[node name="CharacterTest" type="Sprite2D" parent="."]
+position = Vector2(610, 177)
+scale = Vector2(4, 4)
+texture = ExtResource("3_sgomt")
+hframes = 4
+vframes = 4
+
+[node name="Reflection" type="Sprite2D" parent="CharacterTest"]
+material = SubResource("ShaderMaterial_ox6tp")
+texture = ExtResource("3_sgomt")
+offset = Vector2(0, 64)
+flip_v = true
+hframes = 4
+vframes = 4
